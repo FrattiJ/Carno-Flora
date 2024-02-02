@@ -60,7 +60,6 @@ npm install
 5. Create a .env file in the server directory and configure the following environment variables:
 
 ```env
-Copy code
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 ```
@@ -107,7 +106,7 @@ npm start
     - JSON Web Tokens (JWT)
 - #### Payment:
 
-    - (Add payment gateway of your choice, e.g., Stripe, PayPal)
+    - Stripe
 
 ## Contributing
 Contributions are welcome! Please follow the contribution guidelines.
