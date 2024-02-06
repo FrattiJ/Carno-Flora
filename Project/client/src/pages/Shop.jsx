@@ -1,6 +1,22 @@
-import React from "react";
+import React from 'react'
 
-export default function Shop() {
-    return <div><h1>Shop</h1>
-    <p>Shop content and data here</p></div>;
+const Shop = () => {
+  return (
+    <div>
+        <div> {/* Sidebar */}
+            <p>Search</p>
+            <p>Filters</p>
+        </div>
+        <div>
+            <div> {/* Dynamically rendered from database */}
+                <img src="" alt="NAME OF PLANT" />
+                <p>Name</p>
+                <p>Price</p>
+                <button><img src="" alt="Shopping Cart" /></button>
+            </div>
+        </div>
+    </div>
+  )
 }
+
+export default Shop
