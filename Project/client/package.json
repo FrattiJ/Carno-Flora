@@ -9,8 +9,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "install-deps": "cd server && npm install && cd ../client && npm install",
-    "start-server": "cd server && npm start",
-    "start-client": "cd client && npm start",
+    "start-server": "cd ../server && npm start",
+    "start-client": "cd ../client && npm start",
     "start-app": "npm run install-deps && npm run configure-env && npm run start-server && npm run start-client"
   },
   "dependencies": {
