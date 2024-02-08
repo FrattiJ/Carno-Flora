@@ -1,22 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const path = require('path');
 
 // Import routes
-const authRoutes = require('./routes/authRoutes');
-const paymentRoutes = require('./routes/paymentRoutes');
+/* const authRoutes = require('./routes/authRoutes');
+const paymentRoutes = require('./routes/paymentRoutes'); */
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-mongoose.connect('your_mongodb_connection_string', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://your_mongodb_connection_string', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('MongoDB connected');
   })
@@ -25,8 +23,8 @@ mongoose.connect('your_mongodb_connection_string', { useNewUrlParser: true, useU
   });
 
 // API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/payment', paymentRoutes);
+/* app.use('/api/auth', authRoutes);
+app.use('/api/payment', paymentRoutes); */
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
