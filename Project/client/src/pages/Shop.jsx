@@ -1,4 +1,5 @@
 import React from 'react'
+import Product from '../components/Product/index'
 
 const Shop = () => {
   return (
@@ -9,10 +10,7 @@ const Shop = () => {
         </div>
         <div>
             <div> {/* Dynamically rendered from database */}
-                <img src="" alt="NAME OF PLANT" />
-                <p>Name</p>
-                <p>Price</p>
-                <button><img src="" alt="Shopping Cart" /></button>
+              <Product />
             </div>
         </div>
     </div>
