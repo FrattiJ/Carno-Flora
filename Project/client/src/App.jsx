@@ -1,45 +1,49 @@
-// App.jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Main from './main';
+import { Outlet } from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
-const App = () => {
+// import { StoreProvider } from './utils/GlobalState';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+function App() {
   return (
-    <div>
-      {/* Other components or sections */}
-      <Main />
-    </div>
-  );
-};
+    <ApolloProvider client={client}>
+      <div>
+        <Navbar />
+        {/* <Main /> */}
+        <main className="">
+        <Outlet />
+        </main>
+        <Footer />
+      </div>
+      </ApolloProvider>
+  )
+}
 
-const Main = () => {
-  const plantListings = [
-    { id: 1, name: 'Plant 1' },
-    { id: 2, name: 'Plant 2' },
-  ];
-
-  return (
-    <main>
-      {plantListings.map(plant => (
-        <ListItem key={plant.id} name={plant.name} />
-      ))}
-    </main>
-  );
-};
-/* Plant image source */
-const ListItem = ({ name }) => {
-  return (
-    <div className="list-item">
-      <img src={} alt={name} />
-      <div>{name}</div>
-    </div>
-  );
-};
-
-export default App;
+export default App
