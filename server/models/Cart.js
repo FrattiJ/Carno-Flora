@@ -12,14 +12,7 @@ const Cart = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Items'
     }
-  ],
-  user: 
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Users'
-    }
-  
-
+  ]
 });
 
 const Carts = mongoose.model('Carts', Cart);
