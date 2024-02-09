@@ -44,12 +44,8 @@ const Order = new Schema({
     required: true,
     min: 10
   },
-  Carts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Carts',
-    },
-  ],});
+  carts: [Carts.schema]
+});
 
 const Orders = mongoose.model('Orders', Order);
 
