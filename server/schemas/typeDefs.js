@@ -16,13 +16,12 @@ const typeDefs = `
   }
 
   type User {
-    _id: ID
+    _id:  
     fN: String
     lN: String
     email: String
     pW: String
     orders: [Orders]
-    carts: [Carts]
   }
 
   type Order {

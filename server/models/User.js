@@ -25,18 +25,7 @@ const User = new Schema({
     required: true,
     minlength: 8
   },
-  Orders: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Orders',
-    }
-  ],
-  Carts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Carts',
-    }
-  ]
+  orders: [Order.schema]
 });
 
 User.pre('save', async function(next) {
