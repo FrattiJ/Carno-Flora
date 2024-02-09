@@ -5,3 +5,9 @@
 * {
     scroll-behavior: smooth;
 }
+
+#navbar {
+    color: green;
+    font-size: 30px;
+    text-decoration: none;
+}
