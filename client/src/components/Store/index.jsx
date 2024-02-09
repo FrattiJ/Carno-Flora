@@ -23,9 +23,9 @@ const Store = () => {
   }, [storeId]);
 
   return (
-    <div className="store">
+    <div >
       <h2>Store: {storeId}</h2>
-      <div className="products">
+      <div >
         {products.length > 0 ? (
           products.map(product => <Product key={product.id} {...product} />)
         ) : (
