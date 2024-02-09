@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Carts = require('./Carts');
+const Carts = require('./Cart');
 
 const User = new Schema({
   fN: {
@@ -25,7 +25,18 @@ const User = new Schema({
     required: true,
     minlength: 8
   },
-  cart: [Carts.schema]
+  Orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Orders',
+    }
+  ],
+  Carts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Carts',
+    }
+  ]
 });
 
 User.pre('save', async function(next) {
