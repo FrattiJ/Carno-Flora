@@ -9,7 +9,7 @@ const Shop = () => {
             <p>Filters</p>
         </div>
         <div>
-            <div> {/* Dynamically rendered from database */}
+            <div className='grid sm:grid-cols-2 gap-12'> {/* Dynamically rendered from database */}
               <Product />
             </div>
         </div>
