@@ -32,7 +32,7 @@ const typeDefs = `
     streetAddress: String
     city: String
     state: String
-    zip: String
+    zip: Int
     phone: Int
     carts: [Cart]
   }
@@ -69,6 +69,14 @@ const typeDefs = `
     checkout(Items: [itemInput]): Checkout
     searchItems(query: String!): [Item]
   }
+
+  type Mutation {
+    addUser(fN: String!, lN: String!, email: String!, pW: String!): Auth
+    addOrder(_id: ID!, fN: String!, lN: String!, email: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: Int!, phone: Int!): Order
+    addCart(_id: ID!, items: [ID]!): Cart
+    login(email: String!, pW: String!): Auth
+  }
+
 `;
 
 module.exports = typeDefs;
