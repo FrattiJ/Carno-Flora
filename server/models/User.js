@@ -30,7 +30,6 @@ const User = new Schema({
 });
 
 User.pre("save", async function (next) {
-  // Changed Password to pW
   if (this.isNew || this.isModified("pW")) {
     const saltRounds = 10;
     this.pW = await bcrypt.hash(this.pW, saltRounds);
@@ -40,7 +39,7 @@ User.pre("save", async function (next) {
 });
 
 User.methods.isCorrectPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.pW);
 };
 
 const Users = mongoose.model("Users", User);

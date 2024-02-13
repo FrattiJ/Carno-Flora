@@ -25,6 +25,6 @@ const item = new Schema({
   },
 });
 
-const Items = mongoose.model("items", item); // Changed items to Items
+const Items = mongoose.model("items", item);
 
-module.exports = Items; // Changed items to Items
+module.exports = Items;

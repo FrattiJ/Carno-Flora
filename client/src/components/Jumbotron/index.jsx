@@ -1,5 +1,3 @@
-// import Placeholder from "../../assets/plant.jpg";
-
 function Jumbotron({ id, name, description, price, image }) {
   return (
     <div className="m-auto w-full flex flex-col justify-center items-center bg-[#bfc4ac]  rounded-md">
