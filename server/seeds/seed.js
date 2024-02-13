@@ -28,7 +28,7 @@ const itemsData = [
       "Fascinating carnivorous plant that catches and digests insect prey.",
     price: 25.99,
     quantity: 10,
-    image: "venus-flytrap.jpg",
+    image: "/plant.jpg",
   },
   {
     name: "Pitcher Plant",
@@ -36,7 +36,7 @@ const itemsData = [
       "Features deep cavities filled with digestive fluid to trap insects.",
     price: 30.99,
     quantity: 8,
-    image: "pitcher-plant.jpg",
+    image: "/heliamphora.jpg",
   },
   {
     name: "Sundew",
@@ -44,7 +44,7 @@ const itemsData = [
       "Covered in sticky, sweet dew that attracts and traps insects.",
     price: 20.99,
     quantity: 15,
-    image: "sundew.jpg",
+    image: "/plant.jpg",
   },
   {
     name: "Butterwort",
@@ -52,7 +52,7 @@ const itemsData = [
       "Uses sticky leaves to trap insects, digesting them with enzymes.",
     price: 18.99,
     quantity: 12,
-    image: "butterwort.jpg",
+    image: "/heliamphora.jpg",
   },
 ];
 

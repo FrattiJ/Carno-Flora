@@ -1,27 +1,33 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 // import { StoreProvider } from './utils/GlobalState';
 
+// const httpLink = createHttpLink({
+//   uri: "/graphql",
+// });
+
+//changed /graphql to http://localhost:3001/graphql to stop 404 error
+
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "http://localhost:3001/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -38,12 +44,12 @@ function App() {
         <Navbar />
         {/* <Main /> */}
         <main className="">
-        <Outlet />
+          <Outlet />
         </main>
         <Footer />
       </div>
-      </ApolloProvider>
-  )
+    </ApolloProvider>
+  );
 }
 
-export default App
+export default App;
