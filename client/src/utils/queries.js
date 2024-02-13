@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const SEARCH_ITEMS = gql`
   query SearchItems($query: String!) {
@@ -6,6 +6,19 @@ export const SEARCH_ITEMS = gql`
       id
       name
       description
+    }
+  }
+`;
+
+// Added query to get all items to use for Jumbotron
+export const GET_ITEMS = gql`
+  query GetItems {
+    items {
+      _id
+      name
+      description
+      price
+      image
     }
   }
 `;

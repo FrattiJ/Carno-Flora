@@ -30,16 +30,16 @@ const User = new Schema({
 });
 
 User.pre("save", async function (next) {
-  if (this.isNew || this.isModified("password")) {
+  if (this.isNew || this.isModified("pW")) {
     const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
+    this.pW = await bcrypt.hash(this.pW, saltRounds);
   }
 
   next();
 });
 
 User.methods.isCorrectPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.pW);
 };
 
 const Users = mongoose.model("Users", User);

@@ -1,27 +1,35 @@
 // Boilerplate code for Sign up
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
-import { ADD_USER } from '../utils/mutations';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth";
+import { ADD_USER } from "../utils/mutations";
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-      },
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+    try {
+      const mutationResponse = await addUser({
+        variables: {
+          email: formState.email,
+          pW: formState.password,
+          fN: formState.firstName,
+          lN: formState.lastName,
+        },
+      });
+      const { token, user } = mutationResponse.data.addUser;
+      console.log(mutationResponse.data.addUser);
+      Auth.login(token);
+      console.log(user.fN);
+      console.log(user);
+      localStorage.setItem("fN", user.fN);
+    } catch (err) {
+      console.error("Error while signing up:", err);
+    }
   };
 
   const handleChange = (event) => {
