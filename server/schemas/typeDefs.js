@@ -1,5 +1,4 @@
 const typeDefs = `
-
   type Item {
     _id: ID
     name: String
@@ -12,16 +11,16 @@ const typeDefs = `
   type Cart {
     _id: ID
     purchaseDate: String
-    items: [Items]
+    items: [Item]
   }
 
   type User {
-    _id:  
+    _id: ID  
     fN: String
     lN: String
     email: String
     pW: String
-    orders: [Orders]
+    orders: [Order]
   }
 
   type Order {
@@ -35,7 +34,7 @@ const typeDefs = `
     state: String
     zip: String
     phone: Int
-    carts: [Carts]
+    carts: [Cart]
   }
 
   type Query {
@@ -44,12 +43,10 @@ const typeDefs = `
     items: [Item]
     item(_id: ID!): Item
     orders: [Order]
-    order(_id: ID!): order
-    carts: [cart]
-    cart(_id: ID!): cart
+    order(_id: ID!): Order  
+    carts: [Cart]
+    cart(_id: ID!): Cart 
   }
-
-
 `;
 
 module.exports = typeDefs;
