@@ -1,4 +1,3 @@
-// queries.js
 import { gql } from '@apollo/client';
 
 export const SEARCH_ITEMS = gql`

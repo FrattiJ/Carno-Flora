@@ -1,7 +1,6 @@
-// SearchComponent.jsx
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { SEARCH_ITEMS } from '../../utils/queries'; // Import the GraphQL query
+import { SEARCH_ITEMS } from '../../utils/queries';
 
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,13 +12,13 @@ function Search() {
   };
 
   return (
-    <div>
+    <div >
       <input
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={handleSearchChange}
-        className='border-2 rounded-lg p-3 flex border-neutral-300 w-[400px]'
+        className='border-2 rounded-lg p-3 flex border-neutral-300 w-[400px] lg:max-w-[200px]'
       />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}

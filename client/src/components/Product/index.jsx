@@ -4,7 +4,7 @@ import Placeholder from '../../assets/plant.jpg'
 const Product = ({ id, name, description, price, imageUrl }) => {
     return (
       <div className='relative flex flex-col items-center justify-center h-auto w-full rounded-md p-4 md:max-w-screen-sm'>
-        <img src={Placeholder} alt={name} className="rounded-t-lg object-cover scale-x-[1] z-[-1]" />
+        <img src={Placeholder} alt={name} className="rounded-t-lg object-cover scale-x-[1]" />
         <div>
           <div className='flex justify-between items-center p-1 w-full bg-[#588157]'>
             <h3>Name{name}</h3>
