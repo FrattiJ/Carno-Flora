@@ -97,12 +97,11 @@ const resolvers = {
         });
 
         return order;
-      }
-    },
+      },
     addCart: async (parent, { _id, items }) => {
         const cart = new Carts({ items });
 
-        await User.findByIdAndUpdate(_id, {
+        await Users.findByIdAndUpdate(_id, {
           $push: { carts: cart },
         });
 
@@ -125,6 +124,7 @@ const resolvers = {
 
       return { token, user };
     },
+  }
 };
 
 module.exports = resolvers;
