@@ -37,15 +37,36 @@ const typeDefs = `
     carts: [Cart]
   }
 
+  input itemInput {
+    _id: ID
+    purchaseQuantity: Int
+    name: String
+    image: String
+    price: Float
+    quantity: Int
+  }
+
+
+  type Checkout {
+    session: ID
+  }
+
+  type Auth {
+    token: ID
+    user: User
+  }
+
   type Query {
     users: [User]
     user(_id: ID!): User
     items: [Item]
     item(_id: ID!): Item
+    itemName(name: String!): [Item]
     orders: [Order]
     order(_id: ID!): Order  
     carts: [Cart]
     cart(_id: ID!): Cart 
+    checkout(Items: [itemInput]): Checkout
   }
 `;
 
