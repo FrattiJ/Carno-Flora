@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "mongoose": "^8.1.2",
     "start-app": "^1.4.6"
   }
 }
