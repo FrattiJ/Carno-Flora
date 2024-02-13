@@ -19,13 +19,13 @@ const resolvers = {
         throw new Error('Failed to search items');
       }
     },
-    Items: async () => {
+    items: async () => {
       return await Items.find();
     },
-    Item: async (parent, { _id }) => {
+    item: async (parent, { _id }) => {
       return await Items.findById(_id);
     },
-    ItemName: async (parent, { name }) => {
+    itemName: async (parent, { name }) => {
         return await Items.find(name);
       },
     users: async () => {
@@ -34,7 +34,7 @@ const resolvers = {
     user: async (parent, { _id }) => {
         return await Items.findById(_id);
     },
-    Orders: async () => {
+    orders: async () => {
         return await Orders.find.populate('carts');
       },
     order: async (parent, { _id }) => {
