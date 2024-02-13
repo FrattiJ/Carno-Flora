@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const User = require('../server/models/User'); 
 const Plant = require('../server/models/Item'); 
 
-// Connect to your MongoDB database
+// Connect to MongoDB database
 mongoose.connect('mongodb://your_mongodb_connection_string', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Seed data
@@ -14,10 +14,10 @@ const users = [
 ];
 
 const plants = [
-  { name: 'VenomousVenus' },
-  { name: 'SnapDragonette' },
-  { name: 'RazorLeafCraze' },
-  { name: 'SerratedSundew' }
+  { name: 'VenusFlytrap' },
+  { name: 'SnapDragon' },
+  { name: 'RazorLeaf' },
+  { name: 'Sundew' }
 ];
 
 // Function to seed data
