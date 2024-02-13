@@ -32,7 +32,7 @@ const resolvers = {
         return await Users.find();
       },
     user: async (parent, { _id }) => {
-        return await Items.findById(_id);
+        return await Items.findById(_id).populate('orders');
     },
     orders: async () => {
         return await Orders.find.populate('carts');
@@ -82,6 +82,49 @@ const resolvers = {
       return { session: session.id };
     },
   },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await Users.create(args);
+      const token = sToken(user);
+
+      return { token, user };
+    },
+    addOrder: async (parent, args) => {
+        const order = new Orders({ args });
+
+        await Users.findByIdAndUpdate(args._id, {
+          $push: { orders: order },
+        });
+
+        return order;
+      }
+    },
+    addCart: async (parent, { _id, items }) => {
+        const cart = new Carts({ items });
+
+        await User.findByIdAndUpdate(_id, {
+          $push: { carts: cart },
+        });
+
+        return cart;
+    },
+    login: async (parent, { email, pW }) => {
+      const user = await Users.findOne({ email });
+
+      if (!user) {
+        throw AuthenticationError;
+      }
+
+      const Pass = await user.isCorrectPassword(pW);
+
+      if (!Pass) {
+        throw AuthenticationError;
+      }
+
+      const token = sToken(user);
+
+      return { token, user };
+    },
 };
 
 module.exports = resolvers;
