@@ -67,6 +67,7 @@ const typeDefs = `
     carts: [Cart]
     cart(_id: ID!): Cart 
     checkout(Items: [itemInput]): Checkout
+    searchItems(query: String!): [Item]
   }
 `;
 
