@@ -4,6 +4,20 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
+    searchItems: async (_, { query }, { db }) => {
+      try {
+        const items = await db.collection('items').find({
+          $or: [
+            { name: { $regex: query, $options: 'i' } },
+            { description: { $regex: query, $options: 'i' } }
+          ]
+        }).toArray();
+        return items;
+      } catch (error) {
+        console.error('Error searching items:', error);
+        throw new Error('Failed to search items');
+      }
+    },
     Items: async () => {
       return await Items.find();
     },
@@ -40,6 +54,7 @@ const resolvers = {
       const url = new URL(context.headers.referer).origin;
       await Carts.create({ items: args.items.map(({ _id }) => _id) });
       const total = [];
+    
 
       for (const Items of args.items) {
         total.push({
@@ -54,6 +69,20 @@ const resolvers = {
           },
           quantity: Items.purchaseQuantity,
         });
+          searchItems: async (_, { query }, { db }) => {
+      try {
+        const items = await db.collection('items').find({
+          $or: [
+            { name: { $regex: query, $options: 'i' } },
+            { description: { $regex: query, $options: 'i' } }
+          ]
+        }).toArray();
+        return items;
+      } catch (error) {
+        console.error('Error searching items:', error);
+        throw new Error('Failed to search items');
+      }
+    }
       }
 
       const session = await stripe.checkout.sessions.create({
