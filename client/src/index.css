@@ -4,6 +4,12 @@
 
 * {
     scroll-behavior: smooth;
+
+}
+
+main {
+    background-color: #DAD7CD;
+
 }
 
 #navbar {

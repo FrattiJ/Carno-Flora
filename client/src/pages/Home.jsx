@@ -28,7 +28,7 @@ export default function Home() {
   const currentItem = data.items[currentIndex];
 
   return (
-    <div>
+    <div className="p-4">
       <Jumbotron {...currentItem} />
     </div>
   );
