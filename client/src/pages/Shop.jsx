@@ -17,14 +17,13 @@ const Shop = () => {
         <Search />
       </div>
       <div className="w-full bg-[#DAD7CD]">
-        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-12">
+        <div className="grid xl:grid-cols-3 sm:grid-cols-2 ">
           {" "}
           {/* Dynamically rendered from database */}
           {/* <Product /> */}
           {data.items.map((item) => (
             <Product key={item._id} {...item} />
           ))}
-          ;
         </div>
       </div>
     </div>
