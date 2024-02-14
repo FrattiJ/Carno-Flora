@@ -5,6 +5,7 @@ const { ObjectId } = require("mongodb");
 
 const resolvers = {
   Query: {
+    // Search for items by name or description
     searchItems: async (_, { query }, { db }) => {
       try {
         const items = await db
@@ -22,25 +23,32 @@ const resolvers = {
         throw new Error("Failed to search items");
       }
     },
+    // Fetch all items
     items: async () => {
       return await Items.find();
     },
-    item: async (parent, { _id }) => {
+    // Fetch a single item by ID
+    item: async (_, { _id }) => {
       return await Items.findById(_id);
     },
-    itemName: async (parent, { name }) => {
-      return await Items.find(name);
+    // Fetch items by name - corrected method to find by name
+    itemName: async (_, { name }) => {
+      return await Items.findOne({ name });
     },
+    // Fetch all users
     users: async () => {
       return await Users.find();
     },
-    user: async (parent, { _id }) => {
-      return await Items.findById(_id).populate("orders");
+    // Fetch a single user and populate orders
+    user: async (_, { _id }) => {
+      return await Users.findById(_id).populate("orders");
     },
+    // Fetch all orders and populate carts
     orders: async () => {
-      return await Orders.find.populate("carts");
+      return await Orders.find().populate("carts");
     },
-    order: async (parent, { _id }) => {
+    // Fetch a specific order and deeply populate carts and items
+    order: async (_, { _id }) => {
       const user = await Users.findById(_id).populate({
         path: "orders.carts",
         populate: "items",
@@ -48,93 +56,116 @@ const resolvers = {
 
       return user;
     },
+    // Fetch all carts and populate items
     carts: async () => {
-      return await Carts.find.populate("items");
+      return await Carts.find().populate("items");
     },
-    cart: async (parent, { _id }) => {
+    // Fetch a specific cart and populate items
+    cart: async (_, { _id }) => {
       return await Users.findById(_id).populate("items");
     },
-    checkout: async (parent, args, context) => {
+    // Process a checkout operation
+    checkout: async (_, args, context) => {
+      // Corrected the method to calculate total properly
       const url = new URL(context.headers.referer).origin;
       await Carts.create({ items: args.items.map(({ _id }) => _id) });
-      const total = [];
-
-      for (const Items of args.items) {
-        total.push({
-          price_data: {
-            currency: "usd",
-            item_data: {
-              name: Items.name,
-              description: Items.description,
-              images: [`${url}/images/${Items.image}`],
-            },
-            unit_amount: Items.price * 100,
+      const line_items = args.items.map((item) => ({
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: item.name,
+            description: item.description,
+            images: [`${url}/images/${item.image}`],
           },
-          quantity: Items.purchaseQuantity,
-        });
-      }
+          unit_amount: item.price * 100,
+        },
+        quantity: item.purchaseQuantity,
+      }));
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
-        total,
+        line_items,
         mode: "payment",
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`,
+        cancel_url: `${url}/cancel`,
       });
 
       return { session: session.id };
     },
   },
   Mutation: {
-    addUser: async (parent, args) => {
-      console.log(args);
-      console.log("Adding user:", args);
+    // Add a new user
+    addUser: async (_, args) => {
       const user = await Users.create(args);
-      console.log("User created:", user);
       const token = sToken(user);
-      console.log("Token generated:", token);
 
       return { token, user };
     },
-    addOrder: async (parent, args) => {
-      const order = new Orders({ args });
-
-      await Users.findByIdAndUpdate(args._id, {
-        $push: { orders: order },
+    // Add a new order
+    addOrder: async (_, args) => {
+      const order = await Orders.create(args);
+      await Users.findByIdAndUpdate(args.userId, {
+        $push: { orders: order._id },
       });
 
       return order;
     },
-    addCart: async (parent, { _id, items }) => {
-      const cart = new Carts({ items });
-
-      await Users.findByIdAndUpdate(_id, {
-        $push: { carts: cart },
+    // Add a cart for user
+    addCart: async (_, { userId, items }) => {
+      const cart = await Carts.create({ items });
+      await Users.findByIdAndUpdate(userId, {
+        $push: { carts: cart._id },
       });
+      return cart;
+    },
+    // Add an item to cart
+    addToCart: async (_, { cartId, itemId }) => {
+      const cart = await Carts.findById(cartId);
+      if (!cart) throw new Error("Cart not found");
+
+      const item = await Items.findById(itemId);
+      if (!item) throw new Error("Item not found");
+
+      cart.items.push(item._id);
+      await cart.save();
 
       return cart;
     },
-    login: async (parent, { email, pW }) => {
-      console.log("Finding user by email:", email);
+    // Remove an item from cart
+    removeFromCart: async (_, { cartId, itemId }) => {
+      const cart = await Carts.findById(cartId);
+      if (!cart) throw new Error("Cart not found");
+
+      const index = cart.items.indexOf(itemId);
+      if (index > -1) {
+        cart.items.splice(index, 1);
+        await cart.save();
+      } else {
+        throw new Error("Item not found in cart");
+      }
+
+      return cart;
+    },
+    // Clear all items from cart
+    clearCart: async (_, { cartId }) => {
+      const cart = await Carts.findById(cartId);
+      if (!cart) throw new Error("Cart not found");
+
+      cart.items = [];
+      await cart.save();
+
+      return cart;
+    },
+    // User login
+    login: async (_, { email, pW }) => {
       const user = await Users.findOne({ email });
+      if (!user) throw new AuthenticationError("User not found");
 
-      if (!user) {
-        console.log("User not found for email:", email);
-        throw AuthenticationError;
-      }
+      const isValidPassword = await user.isCorrectPassword(pW);
+      if (!isValidPassword) throw new AuthenticationError("Invalid password");
 
-      console.log("Checking password for user:", user);
-      const Pass = await user.isCorrectPassword(pW);
-
-      if (!Pass) {
-        console.log("Incorrect password for user:", user);
-        throw AuthenticationError;
-      }
-
-      console.log("Generating token for user:", user);
       const token = sToken(user);
 
-      console.log("Returning token and user:", { token, user });
       return { token, user };
     },
   },

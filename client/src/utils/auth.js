@@ -32,7 +32,8 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("id_token");
-    localStorage.removeItem("fN"); //Added this because I added a welcome {fN} pulled from localStorage
+    localStorage.removeItem("fN");
+    localStorage.removeItem("cart"); // Remove if causing conflict in local storage
     window.location.assign("/");
   }
 }

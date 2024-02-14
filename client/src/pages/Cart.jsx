@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useCartContext } from "../utils/GlobalState";
 
+import Placeholder from "../assets/plant.jpg";
 export default function Cart() {
-    return (
+  const { state } = useCartContext();
+  const { cart } = state;
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  return (
     <div>
-        <h1>Cart</h1>
-        <div>
-            <img src="" alt="PLANT NAME" />
-            <p>Plant Name</p>
-            <p>Price</p>
+      <h1>Cart</h1>
+      {cart.map((item) => (
+        <div key={item._id}>
+          <img src={item.image || Placeholder} alt={item.name} />
+          <p>{item.name}</p>
+          <p>${item.price}</p>
+          <p>Quantity: {item.quantity}</p>
         </div>
-        <p>Total Price</p>
-        <p>Tax</p>
-        <p>Shipping</p>
-        <form action="">
-            {/* Payment Form */}
-        </form>
-        <button>Checkout</button>
+      ))}
+      <p>Total Price: ${totalPrice.toFixed(2)}</p>
+      {/* Display Tax and Shipping if applicable */}
+      {/* <form action="">{Payment Form/Stripe}</form>
+      <button>Checkout</button> */}
     </div>
-    );
+  );
 }

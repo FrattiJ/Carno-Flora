@@ -24,11 +24,16 @@ function Signup(props) {
       const { token, user } = mutationResponse.data.addUser;
       console.log(mutationResponse.data.addUser);
       Auth.login(token);
-      console.log(user.fN);
       console.log(user);
+      // Saves first name to render onto the navbar
       localStorage.setItem("fN", user.fN);
+      // Saves userId for cart functionality
+      localStorage.setItem("userId", user._id);
     } catch (err) {
       console.error("Error while signing up:", err);
+      console.error("GraphQL Error:", err.graphQLErrors);
+      console.error("Network Error:", err.networkError);
+      console.error("Error Message:", err.message);
     }
   };
 

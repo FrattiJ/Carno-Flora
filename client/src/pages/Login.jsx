@@ -17,8 +17,10 @@ function Login(props) {
       const { token, user } = mutationResponse.data.login;
       Auth.login(token);
       localStorage.setItem("fN", user.fN);
-    } catch (e) {
-      console.error("Error:", e);
+      localStorage.setItem("userId", user._id);
+      console.log(user._id);
+    } catch (err) {
+      console.error("Error while signing up:", err);
     }
   };
 
