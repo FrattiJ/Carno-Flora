@@ -38,8 +38,8 @@ User.pre("save", async function (next) {
   next();
 });
 
-User.methods.isCorrectPassword = async function (password) {
-  return await bcrypt.compare(password, this.pW);
+User.methods.isCorrectPassword = async function (pW) {
+  return await bcrypt.compare(pW, this.pW);
 };
 
 const Users = mongoose.model("Users", User);

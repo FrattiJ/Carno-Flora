@@ -10,7 +10,7 @@ export const SEARCH_ITEMS = gql`
   }
 `;
 
-// Added query to get all items to use for Jumbotron
+// Added query to get all items for Jumbotron/Shop
 export const GET_ITEMS = gql`
   query GetItems {
     items {
