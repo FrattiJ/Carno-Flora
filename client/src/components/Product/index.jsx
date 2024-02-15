@@ -1,13 +1,15 @@
 import Placeholder from "../../assets/plant.jpg";
 import { useCartContext } from "../../utils/GlobalState";
 
-const Product = ({ id, name, description, price, image }) => {
+// Change `id` to `_id` here if your items use MongoDB's `_id`
+const Product = ({ _id, name, description, price, image }) => {
   const { dispatch } = useCartContext();
 
   const handleAddToCart = () => {
+    // Make sure to use `_id` here since that's what we're destructuring from props
     dispatch({
       type: "ADD_TO_CART",
-      payload: { id, name, price, quantity: 1 },
+      payload: { id: _id, name, price, quantity: 1, image },
     });
     dispatch({
       type: "SET_NOTIFICATION",
@@ -32,8 +34,11 @@ const Product = ({ id, name, description, price, image }) => {
             {description}
           </p>
           <span className="w-[90%] place-self-center border-b border-gray-500"></span>
-          <div className="flex justify-center p-2"> {/* Center the button */}
-            <button onClick={handleAddToCart} className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">
+          <div className="flex justify-center p-2">
+            <button
+              onClick={handleAddToCart}
+              className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]"
+            >
               Add to cart
             </button>
           </div>
