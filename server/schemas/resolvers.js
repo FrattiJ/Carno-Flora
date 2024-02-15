@@ -169,6 +169,15 @@ const resolvers = {
 
       return { token, user };
     },
+    updateUser: async (parent, args) => {
+      if (args.id) {
+        return await Users.findByIdAndUpdate(args.id, args, {
+          new: true,
+        });
+      }
+
+      throw AuthenticationError;
+    },
   },
 };
 
