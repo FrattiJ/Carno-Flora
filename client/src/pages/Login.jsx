@@ -33,12 +33,11 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+    <div className="m-auto flex flex-col md:w-[75%] h-[700px] justify-center items-center bg-[#bfc4ac] rounded-md p-2">
 
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+      <h2 className="font-bold p-8 text-2xl ">Login</h2>
+      <form onSubmit={handleFormSubmit} className="w-[75%] lg:w-[45$%]">
+        <div className="flex flex-col space-between my-2">
           <label htmlFor="email">Email address:</label>
           <input
             placeholder="youremail@test.com"
@@ -46,9 +45,10 @@ function Login(props) {
             type="email"
             id="email"
             onChange={handleChange}
+            className='border-2 rounded-lg p-3 flex border-gray-300'
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex flex-col space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
@@ -56,6 +56,7 @@ function Login(props) {
             type="password"
             id="pwd"
             onChange={handleChange}
+            className='border-2 rounded-lg p-3 flex border-gray-300'
           />
         </div>
         {error && (
@@ -63,8 +64,9 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         )}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+        <div className="flex justify-between">
+        <Link to="/signup" className="italic">← Go to Signup</Link>
+          <button type="submit" className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Submit</button>
         </div>
       </form>
     </div>

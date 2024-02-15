@@ -19,6 +19,12 @@ function Signup(props) {
           pW: formState.password,
           fN: formState.firstName,
           lN: formState.lastName,
+          country: formState.country,
+          streetAddress: formState.streetAddress,
+          city: formState.city,
+          state: formState.state,
+          zip: formState.zip,
+          phone: formState.phone
         },
       });
       const { token, user } = mutationResponse.data.addUser;
@@ -46,12 +52,10 @@ function Signup(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
-
-      <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+    <div className="m-auto flex flex-col md:w-[75%] justify-center items-center bg-[#bfc4ac] rounded-md p-2">
+      <h2 className="font-bold p-8 text-2xl ">Signup</h2>
+      <form onSubmit={handleFormSubmit} className="w-[75%] lg:w-[45%] h-dvh mb-8">
+        <div className="flex flex-col space-between my-2">
           <label htmlFor="firstName">First Name:</label>
           <input
             placeholder="First"
@@ -59,9 +63,10 @@ function Signup(props) {
             type="firstName"
             id="firstName"
             onChange={handleChange}
+            className='border-2 rounded-lg p-3 flex border-gray-300'
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex flex-col space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
             placeholder="Last"
@@ -69,9 +74,10 @@ function Signup(props) {
             type="lastName"
             id="lastName"
             onChange={handleChange}
+            className='border-2 rounded-lg p-3 flex border-gray-300'
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex flex-col space-between my-2">
           <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
@@ -79,9 +85,10 @@ function Signup(props) {
             type="email"
             id="email"
             onChange={handleChange}
+            className='border-2 rounded-lg p-3 flex border-gray-300'
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex flex-col space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
@@ -89,10 +96,78 @@ function Signup(props) {
             type="password"
             id="pwd"
             onChange={handleChange}
+            className='border-2 rounded-lg p-3 flex border-gray-300'
           />
-        </div>
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="country">Country:</label>
+            <input
+              placeholder="United States of America"
+              name="country"
+              type="country"
+              id="country"
+              onChange={handleChange}
+              className='border-2 rounded-lg p-3 flex border-gray-300'
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="streetAddress">Street Address:</label>
+            <input
+              placeholder="123 Main Street"
+              name="streetAddress"
+              type="streetAddress"
+              id="streetAddress"
+              onChange={handleChange}
+              className='border-2 rounded-lg p-3 flex border-gray-300'
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="city">City:</label>
+            <input
+              placeholder="Orlando"
+              name="city"
+              type="city"
+              id="city"
+              onChange={handleChange}
+              className='border-2 rounded-lg p-3 flex border-gray-300'
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="state">State:</label>
+            <input
+              placeholder="Florida"
+              name="state"
+              type="state"
+              id="state"
+              onChange={handleChange}
+              className='border-2 rounded-lg p-3 flex border-gray-300'
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="zip">Zip Code:</label>
+            <input
+              placeholder="12345"
+              name="zip"
+              type="zip"
+              id="zip"
+              onChange={handleChange}
+              className='border-2 rounded-lg p-3 flex border-gray-300'
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="phone">Phone:</label>
+            <input
+              placeholder="1234567891"
+              name="phone"
+              type="phone"
+              id="phone"
+              onChange={handleChange}
+              className='border-2 rounded-lg p-3 flex border-gray-300'
+            />
+          </div>
+        <div className="flex justify-between">
+          <Link to="/login" className="italic">← Go to Login</Link>
+          <button type="submit" className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Submit</button>
         </div>
       </form>
     </div>
