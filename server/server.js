@@ -23,18 +23,22 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  // app.use(express.static(path.join(__dirname, "../client/dist")));
-  app.use("/images", express.static(path.join(__dirname, "../client/public")));
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  // });
 
+  app.use("/images", express.static(path.join(__dirname, "../client/public")));
   app.use(
     "/graphql",
     expressMiddleware(server, {
       context: auth,
     })
   );
+
+  if (process.env.NODE_ENV = 'production') {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  })
+}
+
 
   db.once("open", () => {
     app.listen(PORT, () => {
