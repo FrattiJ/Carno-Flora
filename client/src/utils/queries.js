@@ -30,3 +30,24 @@ export const QUERY_CART = gql`
     }
   }
 `;
+
+export const SEARCH_USER = gql`
+  query SearchUser($_id: ID!) {
+    user(_id: $_id) {
+    _id
+    fN
+    lN
+    email
+    pW
+    country
+    streetAddress
+    city
+    state
+    zip
+    phone
+    orders{
+      _id
+    }
+    }
+  }
+`;
