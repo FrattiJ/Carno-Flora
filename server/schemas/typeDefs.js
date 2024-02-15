@@ -24,8 +24,8 @@ const typeDefs = `
     streetAddress: String
     city: String
     state: String
-    zip: Int
-    phone: Int
+    zip: String
+    phone: String
     orders: [Order]
   }
 
@@ -38,8 +38,8 @@ const typeDefs = `
     streetAddress: String
     city: String
     state: String
-    zip: Int
-    phone: Int
+    zip: String
+    phone: String
     carts: [Cart]
   }
 
@@ -77,14 +77,15 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(fN: String!, lN: String!, email: String!, pW: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: Int!, phone: Int!): Auth
-    addOrder(_id: ID!, fN: String!, lN: String!, email: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: Int!, phone: Int!): Order
+    addUser(fN: String!, lN: String!, email: String!, pW: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: String!, phone: String!): Auth
+    addOrder(_id: ID!, fN: String!, lN: String!, email: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: String!, phone: String!): Order
     addCart(_id: ID!, items: [ID]!): Cart
     addToCart(cartId: ID!, itemId: ID!): Cart
     removeFromCart(cartId: ID!, itemId: ID!): Cart
     clearCart(cartId: ID!): Cart
-    updateUser(fN: String, lN: String, email: String, pW: String, country: String, streetAddress: String, city: String, state: String, zip: Int, phone: Int): User
+    updateUser(_id: String!, fN: String, lN: String, email: String, pW: String, country: String, streetAddress: String, city: String, state: String, zip: String, phone: String): User
     login(email: String!, pW: String!): Auth
+    deleteUser(_id: String!): User
   }
 `;
 
