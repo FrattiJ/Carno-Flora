@@ -60,5 +60,22 @@ export const ADD_ORDER = gql`
       }
     }
   }
+  removeFromCart: async (_, { cartId, itemId }) => {
+    try {
+      const cart = await Carts.findById(cartId);
+      if (!cart) throw new Error("Cart not found");
+
+      // Find the index of the item to remove
+      const index = cart.items.indexOf(itemId);
+
+      if (index > -1) {
+        // Remove the item from the array
+        cart.items.splice(index, 1);
+        await cart.save();
+      } else {
+        throw new Error("Item not found in cart");
+      }
+    }
+  }
 `;
 
