@@ -12,19 +12,19 @@ export default function About () {
             <form action="">
                 <div className='grid md:grid-col-2 gap-4 w-full py-2'>
                     <div className='flex flex-col'>
-                        <input type="text"  name='Full name' placeholder='Full Name' className='border-2 rounded-lg p-3 flex border-gray-300 bg-[#DAD7CD]'/>
+                        <input type="text"  name='Full name' placeholder='Full Name' className='border-2 rounded-lg p-3 flex border-gray-300'/>
                     </div>
                     <div className='flex flex-col'>
-                        <input type="Email" name='Email' placeholder='Email' className='border-2 rounded-lg p-3 flex border-gray-300 bg-[#DAD7CD]'/>
+                        <input type="Email" name='Email' placeholder='Email' className='border-2 rounded-lg p-3 flex border-gray-300'/>
                     </div>
                     <div className='flex flex-col'>
-                        <input type="text" name='Phone Number' placeholder='Phone Number' className='border-2 rounded-lg p-3 flex border-gray-300 bg-[#DAD7CD]'/>
+                        <input type="text" name='Phone Number' placeholder='Phone Number' className='border-2 rounded-lg p-3 flex border-gray-300 '/>
                     </div>
                     <div className='flex flex-col'>
-                        <input type="text" name='Subject' placeholder='Subject' className='border-2 rounded-lg p-3 flex border-gray-300 bg-[#DAD7CD]'/>
+                        <input type="text" name='Subject' placeholder='Subject' className='border-2 rounded-lg p-3 flex border-gray-300 '/>
                     </div>
                     <div className='flex flex-col'>
-                        <textarea rows={10} name='Message' placeholder='Message' className='border-2 rounded-lg p-3 flex border-gray-300 bg-[#DAD7CD]'/>
+                        <textarea rows={10} name='Message' placeholder='Message' className='border-2 rounded-lg p-3 flex border-gray-300 '/>
                     </div>
                     <input type="submit" value="Submit" className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]" />
                 </div>

@@ -4,7 +4,7 @@ import logo from '../assets/logo.webp'
 
 const Footer = () => {
   return (
-    <div className="shadow bg-[#3A5A40]">
+    <div className="flex relative shadow bg-[#3A5A40]">
       <div className="w-full max-w-screen-xl mx-auto pt-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <Link

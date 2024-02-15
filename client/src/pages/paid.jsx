@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link} from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { ADD_ORDER } from '../utils/mutations';
@@ -50,10 +51,10 @@ function Success() {
   }, [addCart]);
 
   return (
-    <div>
-        <h1>Success!</h1>
-        <h2>Thank you for your purchase!</h2>
-        <h2>You will now be redirected to the home page</h2>
+    <div className="m-auto flex flex-col md:w-[75%] h-[700px] justify-center items-center bg-[#bfc4ac] rounded-md p-2">
+        <h1 className='sm:text-2xl text-xl font-bold text-neutral-800 text-center'>Success!</h1>
+        <h2 className='items-center p-4 w-[75%] text-center sm:text-xl text-lg text-neutral-700'>Thank you for your purchase!</h2>
+        <button className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]"><Link to="/">Return to Home</Link></button>
     </div>
   );
 }
