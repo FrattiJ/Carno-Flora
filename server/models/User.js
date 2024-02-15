@@ -26,6 +26,31 @@ const User = new Schema({
     required: true,
     minlength: 8,
   },
+  country: {
+    type: String,
+    required: true
+  },
+  streetAddress: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  state: {
+    type: String,
+    required: true
+  },
+  zip: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: Number,
+    required: true,
+    min: 10
+  },
   orders: [Order.schema],
 });
 

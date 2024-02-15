@@ -11,6 +11,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Paid from './pages/paid'
+import Account from './pages/Account'
+
 
 
 const router = createBrowserRouter([
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/paid',
         element: <Paid />,
+      },
+      {
+        path: '/account',
+        element: <Account />,
       },
     ]
   }

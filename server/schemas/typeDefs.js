@@ -77,13 +77,13 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(fN: String!, lN: String!, email: String!, pW: String!): Auth
+    addUser(fN: String!, lN: String!, email: String!, pW: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: Int!, phone: Int!): Auth
     addOrder(_id: ID!, fN: String!, lN: String!, email: String!, country: String!, streetAddress: String!, city: String!, state: String!, zip: Int!, phone: Int!): Order
     addCart(_id: ID!, items: [ID]!): Cart
     addToCart(cartId: ID!, itemId: ID!): Cart
     removeFromCart(cartId: ID!, itemId: ID!): Cart
     clearCart(cartId: ID!): Cart
-    
+    updateUser(fN: String, lN: String, email: String, pW: String, country: String, streetAddress: String, city: String, state: String, zip: Int, phone: Int): User
     login(email: String!, pW: String!): Auth
   }
 `;
