@@ -85,6 +85,7 @@ const typeDefs = `
     clearCart(cartId: ID!): Cart
     updateUser(fN: String, lN: String, email: String, pW: String, country: String, streetAddress: String, city: String, state: String, zip: Int, phone: Int): User
     login(email: String!, pW: String!): Auth
+    deleteUser(_id: String!): User
   }
 `;
 

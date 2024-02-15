@@ -88,3 +88,23 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation deleteuser($ID: String!) {
+    deleteuser(_id: $ID) {
+      user {
+        _id
+        fN
+        lN
+        email
+        country
+        streetAddress
+        city
+        state
+        zip
+        phone
+      }
+    }
+  }
+`;
+

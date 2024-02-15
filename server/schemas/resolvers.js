@@ -178,6 +178,9 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+    deleteUser: async (parent, { _id }) => {
+      return Users.findOneAndDelete({ _id });
+    },
   },
 };
 
