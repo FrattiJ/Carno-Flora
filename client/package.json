@@ -11,6 +11,7 @@
     "install-deps": "cd server && npm install && cd ../client && npm install",
     "start-server": "cd ../server && npm start",
     "start-client": "cd ../client && npm start",
+    "start": "vite",
     "start-app": "npm run install-deps && npm run configure-env && npm run start-server && npm run start-client"
   },
   "dependencies": {
