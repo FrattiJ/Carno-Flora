@@ -7,7 +7,7 @@ export default function About () {
             <h1 className='sm:text-3xl text-2xl font-bold text-neutral-800'>About Us</h1>
             <p className='flex justify-between items-center p-1 w-[75%] text-center sm:text-xl text-lg text-neutral-700'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda odio voluptatum ullam at earum temporibus? Unde dolorum quas nulla! Quaerat, quis. Dolorum, expedita fuga sed necessitatibus ducimus fugit repellat voluptates.</p>
         </div>
-        <div className='p-4 bg-[#588157]'>
+        <div className='p-4 bg-[#bfc4ac]'>
             <h2 className='sm:text-2xl text-xl font-bold text-neutral-800 p-2 text-center'>Contact Us</h2>
             <form action="">
                 <div className='grid md:grid-col-2 gap-4 w-full py-2'>
@@ -26,7 +26,7 @@ export default function About () {
                     <div className='flex flex-col'>
                         <textarea rows={10} name='Message' placeholder='Message' className='border-2 rounded-lg p-3 flex border-gray-300 bg-[#DAD7CD]'/>
                     </div>
-                    <input type="submit" value="Submit" className='border-2 rounded-lg p-3 border-gray-300 cursor-pointer bg-[#DAD7CD]' />
+                    <input type="submit" value="Submit" className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]" />
                 </div>
             </form>
         </div>
