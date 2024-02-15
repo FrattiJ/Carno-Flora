@@ -34,7 +34,8 @@ function Jumbotron({ id, name, description, price, image }) {
         </h2>
         <p className="flex italic sm:text-xl text-l p-2 text-zinc-800">${price}</p>
       </div>
-      <div>
+      <span className="w-[95%] border-b border-gray-500"></span>
+      <div className="p-2">
         <button onClick={handleAddToCart} className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Add to Cart</button>
       </div>
       </div>

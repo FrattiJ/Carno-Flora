@@ -52,9 +52,10 @@ function Signup(props) {
   };
 
   return (
-    <div className="m-auto flex flex-col md:w-[75%] justify-center items-center bg-[#bfc4ac] rounded-md p-2">
+    <div className="m-auto flex flex-col md:w-[75%]  justify-center items-center bg-[#bfc4ac] rounded-md p-2">
       <h2 className="font-bold p-8 text-2xl ">Signup</h2>
-      <form onSubmit={handleFormSubmit} className="w-[75%] lg:w-[45%] h-dvh mb-8">
+      <div className="w-[75%] lg:w-[45%] mb-8">
+      <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col space-between my-2">
           <label htmlFor="firstName">First Name:</label>
           <input
@@ -170,6 +171,7 @@ function Signup(props) {
           <button type="submit" className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Submit</button>
         </div>
       </form>
+      </div>
     </div>
   );
 }
