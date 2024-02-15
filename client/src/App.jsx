@@ -14,15 +14,15 @@ import Notification from "./components/Notification";
 
 // import { StoreProvider } from './utils/GlobalState';
 
-// const httpLink = createHttpLink({
-//   uri: "/graphql",
-// });
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
 
 //changed /graphql to http://localhost:3001/graphql to stop 404 error
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
-});
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:3001/graphql",
+// });
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
