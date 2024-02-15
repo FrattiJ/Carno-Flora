@@ -170,8 +170,8 @@ const resolvers = {
       return { token, user };
     },
     updateUser: async (parent, args) => {
-      if (args.id) {
-        return await Users.findByIdAndUpdate(args.id, args, {
+      if (args._id) {
+        return await Users.findByIdAndUpdate(args._id, args, {
           new: true,
         });
       }

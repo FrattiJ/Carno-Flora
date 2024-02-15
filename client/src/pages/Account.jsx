@@ -15,16 +15,17 @@ function Account(props) {
     try {
       const mutationResponse = await updateUser({
         variables: {
-          email: formState.email,
-          pW: formState.password,
-          fN: formState.firstName,
-          lN: formState.lastName,
-          country: formState.country,
-          streetAddress: formState.streetAddress,
-          city: formState.city,
-          state: formState.state,
-          zip: formState.zip,
-          phone: formState.phone
+          _id: `${userId}`,
+          email: `${formState.email}`,
+          pW: `${formState.password}`,
+          fN: `${formState.firstName}`,
+          lN: `${formState.lastName}`,
+          country: `${formState.country}`,
+          streetAddress: `${formState.streetAddress}`,
+          city: `${formState.city}`,
+          state: `${formState.state}`,
+          zip: `${formState.zip}`,
+          phone: `${formState.phone}`
         },
       });
       const { token, user } = mutationResponse.data.updateUser;
