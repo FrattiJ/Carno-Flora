@@ -15,29 +15,40 @@ function Jumbotron({ id, name, description, price, image }) {
   };
 
   return (
-    <div className="m-auto flex flex-col justify-center items-center bg-[#bfc4ac]  rounded-md">
-      <h1 className="sm:text-3xl text-2xl font-bold text-zinc-900">
-        Todays Featured Items
+    <div
+      className="mx-auto my-8 p-4 flex flex-col items-center bg-[#bfc4ac] rounded-md shadow-lg"
+      style={{ maxWidth: "90%", minHeight: "60vh", maxHeight: "80vh" }}
+    >
+      <h1
+        className="text-center font-bold text-zinc-900 mb-4"
+        style={{ fontSize: "3vh" }}
+      >
+        Today's Featured Items
       </h1>
-      <div className="w-full h-[600px] md:h-[700px] overflow-hidden">
+      <div className="w-full h-3/4 overflow-hidden">
         <img
           src={image}
           alt={description}
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex flex-col items-center p-1 w-full h-1/2 bg-[#A3B18A] rounded-b-md">
-      <div className="flex justify-between items-center w-full">
-        <h2 className="flex font-bold sm:text-xl text-l p-2 text-zinc-800">{name}</h2>
-        <h2 className="flex sm:text-xl text-l p-2 text-zinc-800">
-          {description}
+      <div className="w-full h-1/4 flex flex-col items-center justify-center bg-[#A3B18A] rounded-b-md p-2">
+        <h2 className="font-bold text-zinc-800" style={{ fontSize: "2.5vh" }}>
+          {name}
         </h2>
-        <p className="flex italic sm:text-xl text-l p-2 text-zinc-800">${price}</p>
-      </div>
-      <span className="w-[95%] border-b border-gray-500"></span>
-      <div className="p-2">
-        <button onClick={handleAddToCart} className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Add to Cart</button>
-      </div>
+        <p className="italic text-zinc-800" style={{ fontSize: "2vh" }}>
+          ${price}
+        </p>
+        <p className="text-center text-zinc-800" style={{ fontSize: "2vh" }}>
+          {description}
+        </p>
+        <button
+          onClick={handleAddToCart}
+          className="mt-4 bg-[#588157] text-white px-6 py-2 rounded hover:bg-[#3A5A40]"
+          style={{ fontSize: "2vh" }}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

@@ -3,10 +3,22 @@
 @tailwind utilities;
 
 * {
-    scroll-behavior: smooth;
-
+  scroll-behavior: smooth;
 }
 
 main {
-    background-color: #DAD7CD;
+  background-color: #dad7cd;
+}
+
+.input-field {
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #588157;
 }
