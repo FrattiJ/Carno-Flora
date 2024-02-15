@@ -8,7 +8,7 @@ const dbURI = "mongodb://127.0.0.1:27017/pro2";
 const usersData = [
   {
     fN: "Alice",
-    lN: "Johnson",
+    lN: "Johnson", 
     email: "alice@example.com",
     pW: "password1",
   },
@@ -102,8 +102,16 @@ const hashPassword = async (password) => {
 };
 
 // Connect to MongoDB
+// mongoose
+//   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log("MongoDB connected successfully."))
+//   .catch((err) => console.error("MongoDB connection error:", err));
+// // Connect to MongoDB
 mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected successfully."))
   .catch((err) => console.error("MongoDB connection error:", err));
 
