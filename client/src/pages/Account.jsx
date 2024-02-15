@@ -1,30 +1,31 @@
-// Boilerplate code for Sign up
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { UPDATE_USER } from "../utils/mutations";
+import { DELETE_USER } from "../utils/mutations";
+
 
 function Account(props) {
   const [formState, setFormState] = useState({  });
   const [updateUser] = useMutation(UPDATE_USER);
+  const userId = localStorage.getItem("userId")
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await updateUser({
         variables: {
-          email: formState.email,
-          pW: formState.password,
-          fN: formState.firstName,
-          lN: formState.lastName,
-          country: formState.country,
-          streetAddress: formState.streetAddress,
-          city: formState.city,
-          state: formState.state,
-          zip: formState.zip,
-          phone: formState.phone
+          _id: `${userId}`,
+          email: `${formState.email}`,
+          pW: `${formState.password}`,
+          fN: `${formState.firstName}`,
+          lN: `${formState.lastName}`,
+          country: `${formState.country}`,
+          streetAddress: `${formState.streetAddress}`,
+          city: `${formState.city}`,
+          state: `${formState.state}`,
+          zip: `${formState.zip}`,
+          phone: `${formState.phone}`
         },
       });
       const { token, user } = mutationResponse.data.updateUser;
