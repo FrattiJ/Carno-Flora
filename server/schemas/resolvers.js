@@ -66,28 +66,29 @@ const resolvers = {
     },
     // Process a checkout operation
     checkout: async (_, args, context) => {
-      // Corrected the method to calculate total properly
+      // Corrected the method to calculate total 
+      console.log(args)
       const url = new URL(context.headers.referer).origin;
-      await Carts.create({ items: args.items.map(({ _id }) => _id) });
-      const line_items = args.items.map((item) => ({
+      await Carts.create({ items: args.Items.map(({ _id }) => _id) });
+      const line_items = args.Items.map((Item) => ({
         price_data: {
           currency: "usd",
           product_data: {
-            name: item.name,
-            description: item.description,
-            images: [`${url}/images/${item.image}`],
+            name: Item.name,
+            description: Item.description,
+            images: [`${url}/images/${Item.image}`],
           },
-          unit_amount: item.price * 100,
+          unit_amount: Item.price * 100,
         },
-        quantity: item.purchaseQuantity,
+        quantity: Item.quantity,
       }));
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items,
         mode: "payment",
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/cancel`,
+        success_url: `${url}/?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
       });
 
       return { session: session.id };
