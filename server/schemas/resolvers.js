@@ -87,7 +87,7 @@ const resolvers = {
         payment_method_types: ["card"],
         line_items,
         mode: "payment",
-        success_url: `${url}/?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${url}/paid?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       });
 
@@ -112,9 +112,9 @@ const resolvers = {
       return order;
     },
     // Add a cart for user
-    addCart: async (_, { userId, items }) => {
+    addCart: async (_, { orderId, items }) => {
       const cart = await Carts.create({ items });
-      await Users.findByIdAndUpdate(userId, {
+      await Orders.findByIdAndUpdate(orderId, {
         $push: { carts: cart._id },
       });
       return cart;
