@@ -10,7 +10,7 @@ import {
   AiOutlineMenu,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import logo from '../assets/logo.webp'
+import logo from "../assets/logo.webp";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -95,46 +95,51 @@ const Navbar = () => {
           )}
         </div>
       )}
-<div className="md:block hidden">
-  <div className="flex justify-between items-center">
-    <div className="flex">
-      <Link to="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-        <img src={logo} className="h-16" alt="Carno-Flora Logo" />
-      </Link>
-    </div>
-    <ul className="flex space-x-4 justify-end">
-      <li className="text-2xl text-[#3a5a40] relative group">
-        <Link to="/">Home</Link>
-        <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
-      </li>
-      <li className="text-2xl text-[#3a5a40] relative group">
-        <Link to="/shop">Shop</Link>
-        <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
-      </li>
-      <li className="text-2xl text-[#3a5a40] relative group">
-        <Link to="/about">About Us</Link>
-        <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
-      </li>
-      <li className="text-2xl text-[#3a5a40] relative group">
-        <Link to="/cart">Cart</Link>
-        <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
-      </li>
-      {/* Conditionally render the Login/Logout link based on whether firstName is present */}
-      {firstName ? (
-        <li className="text-2xl text-[#3a5a40] relative cursor-pointer group" onClick={handleLogout}>
-          Logout
-          <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
-        </li>
-      ) : (
-        <li className="text-2xl text-[#3a5a40] relative group">
-          <Link to="/login">Login</Link>
-          <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
-        </li>
-      )}
-    </ul>
-  </div>
-</div>
-
+      <div className="md:block hidden">
+        <div className="flex justify-between items-center">
+          <div className="flex">
+            <Link
+              to="/"
+              className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+            >
+              <img src={logo} className="h-16" alt="Carno-Flora Logo" />
+            </Link>
+          </div>
+          <ul className="flex space-x-4 justify-end">
+            <li className="text-2xl text-[#3a5a40] relative group">
+              <Link to="/">Home</Link>
+              <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
+            </li>
+            <li className="text-2xl text-[#3a5a40] relative group">
+              <Link to="/shop">Shop</Link>
+              <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
+            </li>
+            <li className="text-2xl text-[#3a5a40] relative group">
+              <Link to="/about">About Us</Link>
+              <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
+            </li>
+            <li className="text-2xl text-[#3a5a40] relative group">
+              <Link to="/cart">Cart</Link>
+              <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
+            </li>
+            {/* Conditionally render the Login/Logout link based on whether firstName is present */}
+            {firstName ? (
+              <li
+                className="text-2xl text-[#3a5a40] relative cursor-pointer group"
+                onClick={handleLogout}
+              >
+                Logout
+                <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
+              </li>
+            ) : (
+              <li className="text-2xl text-[#3a5a40] relative group">
+                <Link to="/login">Login</Link>
+                <span className="absolute left-0 right-0 h-0.5 bg-black transform scale-x-0 transition-transform duration-250 ease-in-out group-hover:scale-x-100"></span>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

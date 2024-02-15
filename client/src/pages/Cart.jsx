@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useCartContext } from "../utils/GlobalState";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CART } from "../utils/queries";
@@ -11,6 +11,7 @@ export default function Cart() {
   const { state, dispatch } = useCartContext();
   const { cart } = state;
   const [getCart, { data }] = useLazyQuery(QUERY_CART);
+  const footerRef = useRef(null);
 
   useEffect(() => {
     if (data) {
@@ -30,10 +31,13 @@ export default function Cart() {
       type: "DECREASE_QUANTITY",
       payload: { id: _id },
     });
+    dispatch({
+      type: "SET_NOTIFICATION",
+      payload: `Removed from Cart`,
+    });
   };
 
   const checkout = () => {
-    console.log(state);
     getCart({
       variables: {
         Items: cart.map(({ _id, quantity }) => ({ id: _id, quantity })),
@@ -41,12 +45,20 @@ export default function Cart() {
     });
   };
 
+  // Calculate footer height
+  useEffect(() => {
+    const footerHeight = footerRef.current.clientHeight;
+    document.body.style.paddingBottom = `${footerHeight}px`;
+    return () => {
+      document.body.style.paddingBottom = "0";
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col h-screen justify-between">
-      {" "}
-      <div>
-        <h1 className="text-3xl font-semibold mb-4">Your Cart</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow overflow-auto pb-16">
+        <h1 className="text-3xl font-semibold my-4 px-4">Your Cart</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
           {cart.map((item, index) => (
             <div
               key={`${item._id}-${index}`}
@@ -58,26 +70,23 @@ export default function Cart() {
                 className="w-full h-48 object-cover rounded mb-4"
               />
               <div className="flex-grow">
-                {" "}
-                {/* This ensures that buttons align at the bottom */}
                 <p className="text-lg font-semibold mb-2">{item.name}</p>
                 <p className="text-gray-600">${item.price}</p>
                 <p className="text-gray-600 mb-4">Quantity: {item.quantity}</p>
+                <button
+                  onClick={() => handleDecreaseQuantity(item._id)}
+                  className="self-start bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200 text-sm"
+                >
+                  Remove from Cart
+                </button>
               </div>
-              <button
-                onClick={() => handleDecreaseQuantity(item._id)}
-                className="self-start bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200 text-sm"
-              >
-                Remove from Cart
-              </button>
             </div>
           ))}
         </div>
       </div>
-      <div className="sticky bottom-0 bg-white p-4">
-        {" "}
-        {/* Sticky footer with a white background */}
-        <div className="flex justify-between items-center">
+
+      <div ref={footerRef} className="bg-white p-4 shadow">
+        <div className="max-w-4xl mx-auto flex justify-between items-center">
           <p className="text-xl font-semibold">
             Total Price: ${totalPrice.toFixed(2)}
           </p>
