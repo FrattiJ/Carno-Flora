@@ -1,115 +1,58 @@
-# MERN Stack Carnivorous Plants Storefront
-Welcome to the MERN Stack Carnivorous Plants Storefront! This project is a full-stack web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It aims to provide a user-friendly and engaging platform for selling and buying carnivorous plants.
+# CarnoFlora - Project 3
+
+Full-stack web storefront written using the MERN stack (MongoDB, Express, React, and Node) hosting a variety of carnivorous plants!
 
 ## Table of Contents
-- [Features](#features)
-- [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-- [Usage](#usage)
-- [Technologies](#technologies)
-- [Contributing](#contributing)
-- [License](#license)
 
-## Features
-- **Product Listings:** Browse a variety of carnivorous plants with detailed descriptions and images.
+1. [Description](#description)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Features](#features)
+5. [Contributors](#contributors)
+6. [License](#license)
+7. [Questions](#questions)
+8. [Link](#link)
+9. [Screenshots](#screenshots)
 
-- **User Authentication:** Register an account, log in, and manage your profile.
+## Description
 
-- **Shopping Cart:** Add plants to your cart and proceed to checkout.
+This web application was designed to be a storefront for a niche hobby: Carnivorous Plants. It was designed to cater to a specific market and offers a variety of different, hard to find carnivorous plants.
+Each item is rendered on a card describing various details and offers the feature of database storage, allowing the user to save account information, cart and order data. 
 
-- **Payment Integration:** Securely make purchases using integrated payment options.
+## Installation
 
-- **Order History:** View your order history and track the status of your deliveries.
-
-- **Admin Panel:** Manage product listings, user accounts, and monitor sales through an admin dashboard.
-
-## Getting Started
-#### Prerequisites
-Make sure you have the following installed on your machine:
-
-- Node.js
-- MongoDB
-### Installation
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/mern-carnivorous-plants-storefront.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd mern-carnivorous-plants-storefront
-```
-
-3. Install server dependencies:
-
-```bash
-cd server
-npm install
-```
-
-4. Install client dependencies:
-
-```bash
-cd ../client
-npm install
-```
-
-5. Create a .env file in the server directory and configure the following environment variables:
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-```
-
-Replace your_mongodb_connection_string with your MongoDB connection string and your_jwt_secret_key with a secure secret for JWT.
-
-6. Run the server:
-
-```bash
-cd ../server
-npm start
-```
-
-7. Run the client:
-
-```bash
-cd ../client
-npm start
-```
-
-8. http://localhost:3000 will automatically open in your browser to see the carnivorous plants storefront.
+N/A
 
 ## Usage
-- Explore the catalog, add plants to your cart, and proceed to checkout.
-- Register an account to track your order history.
-- Admins can manage products and users through the admin dashboard.
 
-## Technologies
+Using this web application is easy. Once a user has logged in or created an account, they have access to the different plant material the page has to offer. The user just adds them to their cart, review the contents in the cart and proceed to checkout.
 
-- #### Frontend:
+## Features
 
-    - React.js
-    - Redux for state management
-    - React Router for navigation
-    - Material-UI for UI components
-- #### Backend:
+- **Product Listings:** Browse a variety of carnivorous plants with detailed descriptions and images.
+- **User Authentication:** Register an account, log in, and manage your cart.
+- **Shopping Cart:** Add plants to your cart and proceed to checkout.
+- **Payment Integration:** Secure payment management through Stripe.
 
-    - Node.js
-    - Express.js
-    - MongoDB for data storage
-    - Mongoose for MongoDB object modeling
-- #### Authentication:
+## Contributors
 
-    - JSON Web Tokens (JWT)
-- #### Payment:
-
-    - Stripe
-
-## Contributing
-Contributions are welcome! Please follow the contribution guidelines.
+[Jacob Fratti](https://github.com/FrattiJ/Carno-Flora) - Tailwind, React <br/>
+[Clifford Rouzeau](https://github.com/cliffordrouzeau) - Back-End Coding and Technologies <br/>
+[Raymond Lacrouts](https://github.com/Wolffkran) - Front/Back-End Support and Design <br/>
+[Elijah Satten](https://github.com/elijahsatten) - Tailwind <br/>
+[Ryan Caltabiano](https://github.com/Ryan9698) - React 
 
 ## License
-This project is licensed under the MIT License. Feel free to use, modify, and distribute the code.
+
+The is no license for this project.
+
+## Questions
+
+If there are any questions, please feel free to contact any member of the team by clicking the above links.
+
+## Link
+
+
+
+## Screenshots 
+
