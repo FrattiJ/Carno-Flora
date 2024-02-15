@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { Users, Items, Carts, Orders } = require("../models");
 
 // MongoDB connection string
-const dbURI = "mongodb://127.0.0.1:27017/pro2";
+const dbURI = "mongodb+srv://jacobrfratti:123@fratti.epiigkl.mongodb.net/pro2?retryWrites=true&w=majority";
 
 const usersData = [
   {
