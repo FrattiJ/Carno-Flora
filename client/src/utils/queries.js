@@ -22,3 +22,11 @@ export const GET_ITEMS = gql`
     }
   }
 `;
+
+export const QUERY_CART = gql`
+  query getCart($Items: [itemInput]) {
+    checkout(Items: $Items) {
+      session
+    }
+  }
+`;

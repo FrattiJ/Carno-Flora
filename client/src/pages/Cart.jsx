@@ -1,5 +1,15 @@
 import React from "react";
 import { useCartContext } from "../utils/GlobalState";
+import { useLazyQuery } from '@apollo/client';
+import { QUERY_CART } from '../utils/queries';
+import { useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import Auth from '../utils/auth';
+
+
+const stripe = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+
+
 
 import Placeholder from "../assets/plant.jpg";
 
@@ -10,6 +20,26 @@ export default function Cart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const [getCart, { data }] = useLazyQuery(QUERY_CART);
+  useEffect(() => {
+    console.log("useEffect")
+    if (data) {
+      stripe.then((res) => {
+        console.log(data)
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
+
+  function checkout() {
+    console.log(state)
+    getCart({
+      variables: { 
+        Items: [...state.cart],
+      },
+    });
+  }
+
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 ">
@@ -30,7 +60,7 @@ export default function Cart() {
         <p className="text-xl font-semibold">Total Price: ${totalPrice.toFixed(2)}</p>
         {/* Display Tax and Shipping if applicable */}
         {/* <form action="">{Payment Form/Stripe}</form> */}
-        <button className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Checkout</button>
+        <button onClick={checkout} className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Checkout</button>
       </div>
     </div>
   );

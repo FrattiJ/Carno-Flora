@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.4",
+    "@stripe/stripe-js": "^3.0.2",
     "graphql": "^16.8.1",
     "jwt-decode": "^4.0.0",
     "mongoose": "^8.1.2",

@@ -20,6 +20,12 @@ const typeDefs = `
     lN: String
     email: String
     pW: String
+    country: String
+    streetAddress: String
+    city: String
+    state: String
+    zip: Int
+    phone: Int
     orders: [Order]
   }
 
