@@ -44,8 +44,8 @@ export const ADD_CART = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($fN: String!, $lN: String!, $email: String!, $country: String!, $streetAddress: String!,  $city: String!,  $state: String!,  $zip: Int!,  $phone: Int!) {
-    addUser(fN: $fN, lN: $lN, email: $email, country: $country, streetAddress: $streetAddress, city: $city, state: $state, zip: $zip, phone: $phone, ) {
+  mutation addOrder($fN: String!, $lN: String!, $email: String!, $country: String!, $streetAddress: String!, $city: String!, $state: String!, $zip: Int!, $phone: Int!) {
+    addUser(fN: $fN, lN: $lN, email: $email, country: $country, streetAddress: $streetAddress, city: $city, state: $state, zip: $zip, phone: $phone) {
       Order {
         _id
         fN
@@ -60,22 +60,20 @@ export const ADD_ORDER = gql`
       }
     }
   }
-  removeFromCart: async (_, { cartId, itemId }) => {
-    try {
-      const cart = await Carts.findById(cartId);
-      if (!cart) throw new Error("Cart not found");
+`;
 
-      // Find the index of the item to remove
-      const index = cart.items.indexOf(itemId);
-
-      if (index > -1) {
-        // Remove the item from the array
-        cart.items.splice(index, 1);
-        await cart.save();
-      } else {
-        throw new Error("Item not found in cart");
+export const REMOVE_FROM_CART = gql`
+  mutation removeFromCart($cartId: ID!, $itemId: ID!) {
+    removeFromCart(cartId: $cartId, itemId: $itemId) {
+      _id
+      purchaseDate
+      products {
+        _id
+        name
+        description
+        price
+        quantity
       }
     }
   }
 `;
-
