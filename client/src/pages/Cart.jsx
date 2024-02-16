@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useCartContext } from "../utils/GlobalState";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CART } from "../utils/queries";
@@ -45,7 +45,6 @@ export default function Cart() {
     });
   };
 
-  // Calculate footer height
   useEffect(() => {
     const footerHeight = footerRef.current.clientHeight;
     document.body.style.paddingBottom = `${footerHeight}px`;

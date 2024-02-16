@@ -1,5 +1,4 @@
-//Displays when an item has been added to the cart
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useCartContext } from "../utils/GlobalState";
 
 const Notification = () => {

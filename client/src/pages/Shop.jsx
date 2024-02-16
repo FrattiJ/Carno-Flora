@@ -1,4 +1,3 @@
-import React from "react";
 import Product from "../components/Product/index";
 import Search from "../components/Search/index";
 import { useQuery } from "@apollo/client";
@@ -19,8 +18,6 @@ const Shop = () => {
       <div className="w-full bg-[#DAD7CD]">
         <div className="grid xl:grid-cols-3 sm:grid-cols-2 ">
           {" "}
-          {/* Dynamically rendered from database */}
-          {/* <Product /> */}
           {data.items.map((item) => (
             <Product key={item._id} {...item} />
           ))}

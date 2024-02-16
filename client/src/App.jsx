@@ -12,8 +12,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Notification from "./components/Notification";
 
-// import { StoreProvider } from './utils/GlobalState';
-
 const httpLink = createHttpLink({
   uri: "/graphql",
 });

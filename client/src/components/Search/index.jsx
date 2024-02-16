@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
-import { SEARCH_ITEMS } from '../../utils/queries';
+import { useState } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { SEARCH_ITEMS } from "../../utils/queries";
 
 function Search() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchItems, { loading, error, data }] = useLazyQuery(SEARCH_ITEMS);
 
   const handleSearchChange = (event) => {
@@ -12,13 +12,13 @@ function Search() {
   };
 
   return (
-    <div >
+    <div>
       <input
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={handleSearchChange}
-        className='border-2 rounded-lg p-3 flex border-neutral-300 w-[400px] lg:max-w-[200px]'
+        className="border-2 rounded-lg p-3 flex border-neutral-300 w-[400px] lg:max-w-[200px]"
       />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}

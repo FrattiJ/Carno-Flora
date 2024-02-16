@@ -1,5 +1,3 @@
-// Boilerplate code for Sign up
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
@@ -24,7 +22,7 @@ function Signup(props) {
           city: formState.city,
           state: formState.state,
           zip: formState.zip,
-          phone: formState.phone
+          phone: formState.phone,
         },
       });
       const { token, user } = mutationResponse.data.addUser;
@@ -33,7 +31,7 @@ function Signup(props) {
       console.log(user);
       // Saves first name to render onto the navbar
       localStorage.setItem("fN", user.fN);
-      // Saves userId for cart functionality
+      // Saves user_.Id for cart functionality
       localStorage.setItem("userId", user._id);
     } catch (err) {
       console.error("Error while signing up:", err);
@@ -55,50 +53,50 @@ function Signup(props) {
     <div className="m-auto flex flex-col md:w-[75%]  justify-center items-center bg-[#bfc4ac] rounded-md p-2">
       <h2 className="font-bold p-8 text-2xl ">Signup</h2>
       <div className="w-[75%] lg:w-[45%] mb-8">
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex flex-col space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            placeholder="First"
-            name="firstName"
-            type="firstName"
-            id="firstName"
-            onChange={handleChange}
-            className='border-2 rounded-lg p-3 flex border-gray-300'
-          />
-        </div>
-        <div className="flex flex-col space-between my-2">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
-            onChange={handleChange}
-            className='border-2 rounded-lg p-3 flex border-gray-300'
-          />
-        </div>
-        <div className="flex flex-col space-between my-2">
-          <label htmlFor="email">Email:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-            className='border-2 rounded-lg p-3 flex border-gray-300'
-          />
-        </div>
-        <div className="flex flex-col space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-            className='border-2 rounded-lg p-3 flex border-gray-300'
-          />
+        <form onSubmit={handleFormSubmit}>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              placeholder="First"
+              name="firstName"
+              type="firstName"
+              id="firstName"
+              onChange={handleChange}
+              className="border-2 rounded-lg p-3 flex border-gray-300"
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              placeholder="Last"
+              name="lastName"
+              type="lastName"
+              id="lastName"
+              onChange={handleChange}
+              className="border-2 rounded-lg p-3 flex border-gray-300"
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="email">Email:</label>
+            <input
+              placeholder="youremail@test.com"
+              name="email"
+              type="email"
+              id="email"
+              onChange={handleChange}
+              className="border-2 rounded-lg p-3 flex border-gray-300"
+            />
+          </div>
+          <div className="flex flex-col space-between my-2">
+            <label htmlFor="pwd">Password:</label>
+            <input
+              placeholder="******"
+              name="password"
+              type="password"
+              id="pwd"
+              onChange={handleChange}
+              className="border-2 rounded-lg p-3 flex border-gray-300"
+            />
           </div>
           <div className="flex flex-col space-between my-2">
             <label htmlFor="country">Country:</label>
@@ -108,7 +106,7 @@ function Signup(props) {
               type="country"
               id="country"
               onChange={handleChange}
-              className='border-2 rounded-lg p-3 flex border-gray-300'
+              className="border-2 rounded-lg p-3 flex border-gray-300"
             />
           </div>
           <div className="flex flex-col space-between my-2">
@@ -119,7 +117,7 @@ function Signup(props) {
               type="streetAddress"
               id="streetAddress"
               onChange={handleChange}
-              className='border-2 rounded-lg p-3 flex border-gray-300'
+              className="border-2 rounded-lg p-3 flex border-gray-300"
             />
           </div>
           <div className="flex flex-col space-between my-2">
@@ -130,7 +128,7 @@ function Signup(props) {
               type="city"
               id="city"
               onChange={handleChange}
-              className='border-2 rounded-lg p-3 flex border-gray-300'
+              className="border-2 rounded-lg p-3 flex border-gray-300"
             />
           </div>
           <div className="flex flex-col space-between my-2">
@@ -141,7 +139,7 @@ function Signup(props) {
               type="state"
               id="state"
               onChange={handleChange}
-              className='border-2 rounded-lg p-3 flex border-gray-300'
+              className="border-2 rounded-lg p-3 flex border-gray-300"
             />
           </div>
           <div className="flex flex-col space-between my-2">
@@ -152,7 +150,7 @@ function Signup(props) {
               type="zip"
               id="zip"
               onChange={handleChange}
-              className='border-2 rounded-lg p-3 flex border-gray-300'
+              className="border-2 rounded-lg p-3 flex border-gray-300"
             />
           </div>
           <div className="flex flex-col space-between my-2">
@@ -163,14 +161,21 @@ function Signup(props) {
               type="phone"
               id="phone"
               onChange={handleChange}
-              className='border-2 rounded-lg p-3 flex border-gray-300'
+              className="border-2 rounded-lg p-3 flex border-gray-300"
             />
           </div>
-        <div className="flex justify-between">
-          <Link to="/login" className="italic">← Go to Login</Link>
-          <button type="submit" className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]">Submit</button>
-        </div>
-      </form>
+          <div className="flex justify-between">
+            <Link to="/login" className="italic">
+              ← Go to Login
+            </Link>
+            <button
+              type="submit"
+              className="bg-[#588157] text-white px-4 py-2 rounded hover:bg-[#3A5A40]"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

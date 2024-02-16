@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ITEMS } from "../utils/queries";
 import Jumbotron from "../components/Jumbotron/index";
@@ -8,12 +8,11 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Makes sure data is defined before setting up the interval
     if (data && data.items && data.items.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex(
           (currentIndex) => (currentIndex + 1) % data.items.length
-        ); // Loop back to the first item after the last
+        );
       }, 10000); // 10000 - Changes item every 10 seconds
 
       return () => clearInterval(interval);
