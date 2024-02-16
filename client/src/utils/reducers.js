@@ -46,7 +46,7 @@ export const cartReducer = (state = initialState, action) => {
 
     case DECREASE_QUANTITY: {
       const index = state.cart.findIndex(
-        (item) => item._id === action.payload.id
+        (item) => item.id === action.payload.id
       );
       if (index !== -1) {
         const newCart = [...state.cart];
@@ -56,13 +56,11 @@ export const cartReducer = (state = initialState, action) => {
           newCart.splice(index, 1);
         }
 
-        console.log("Updated cart:", newCart);
-
         return { ...state, cart: newCart };
       }
-      console.log("Item not found in cart:", action.payload.id);
       return state;
     }
+
     case UPDATE_CART_QUANTITY:
       return {
         ...state,

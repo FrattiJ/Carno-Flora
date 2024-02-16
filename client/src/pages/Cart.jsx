@@ -3,6 +3,7 @@ import { useCartContext } from "../utils/GlobalState";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CART } from "../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
+import { DECREASE_QUANTITY } from "../utils/actions";
 import Placeholder from "../assets/plant.jpg";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -28,7 +29,7 @@ export default function Cart() {
 
   const handleDecreaseQuantity = (_id) => {
     dispatch({
-      type: "DECREASE_QUANTITY",
+      type: DECREASE_QUANTITY,
       payload: { id: _id },
     });
     dispatch({
@@ -73,7 +74,7 @@ export default function Cart() {
                 <p className="text-gray-600">${item.price}</p>
                 <p className="text-gray-600 mb-4">Quantity: {item.quantity}</p>
                 <button
-                  onClick={() => handleDecreaseQuantity(item._id)}
+                  onClick={() => handleDecreaseQuantity(item.id)}
                   className="self-start bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200 text-sm"
                 >
                   Remove from Cart
