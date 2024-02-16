@@ -1,4 +1,4 @@
-const cors = require("cors"); // Added to allow cross-origin requests
+const cors = require("cors");
 const express = require("express");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -11,7 +11,7 @@ require("dotenv").config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-app.use(cors()); // Added to allow cross-origin requests
+app.use(cors());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -23,7 +23,6 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-
   app.use("/images", express.static(path.join(__dirname, "../client/public")));
   app.use(
     "/graphql",
@@ -32,13 +31,12 @@ const startApolloServer = async () => {
     })
   );
 
-  if (process.env.NODE_ENV = 'production') {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  })
-}
-
+  if ((process.env.NODE_ENV = "production")) {
+    app.use(express.static(path.join(__dirname, "../client/dist")));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+    });
+  }
 
   db.once("open", () => {
     app.listen(PORT, () => {

@@ -1,5 +1,6 @@
 import { useCartContext } from "../../utils/GlobalState";
 
+// eslint-disable-next-line react/prop-types
 function Jumbotron({ id, name, description, price, image }) {
   const { dispatch } = useCartContext();
 

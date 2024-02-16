@@ -1,12 +1,10 @@
 import Placeholder from "../../assets/plant.jpg";
 import { useCartContext } from "../../utils/GlobalState";
 
-// Change `id` to `_id` here if your items use MongoDB's `_id`
 const Product = ({ _id, name, description, price, image }) => {
   const { dispatch } = useCartContext();
 
   const handleAddToCart = () => {
-    // Make sure to use `_id` here since that's what we're destructuring from props
     dispatch({
       type: "ADD_TO_CART",
       payload: { id: _id, name, price, quantity: 1, image },

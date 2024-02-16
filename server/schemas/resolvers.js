@@ -5,7 +5,6 @@ const { ObjectId } = require("mongodb");
 
 const resolvers = {
   Query: {
-    // Search for items by name or description
     searchItems: async (_, { query }, { db }) => {
       try {
         const items = await db
@@ -23,31 +22,24 @@ const resolvers = {
         throw new Error("Failed to search items");
       }
     },
-    // Fetch all items
     items: async () => {
       return await Items.find();
     },
-    // Fetch a single item by ID
     item: async (_, { _id }) => {
       return await Items.findById(_id);
     },
-    // Fetch items by name - corrected method to find by name
     itemName: async (_, { name }) => {
       return await Items.findOne({ name });
     },
-    // Fetch all users
     users: async () => {
       return await Users.find();
     },
-    // Fetch a single user and populate orders
     user: async (_, { _id }) => {
       return await Users.findById(_id).populate("orders");
     },
-    // Fetch all orders and populate carts
     orders: async () => {
       return await Orders.find().populate("carts");
     },
-    // Fetch a specific order and deeply populate carts and items
     order: async (_, { _id }) => {
       const user = await Users.findById(_id).populate({
         path: "orders.carts",
@@ -56,18 +48,14 @@ const resolvers = {
 
       return user;
     },
-    // Fetch all carts and populate items
     carts: async () => {
       return await Carts.find().populate("items");
     },
-    // Fetch a specific cart and populate items
     cart: async (_, { _id }) => {
       return await Users.findById(_id).populate("items");
     },
-    // Process a checkout operation
     checkout: async (_, args, context) => {
-      // Corrected the method to calculate total 
-      console.log(args)
+      console.log(args);
       const url = new URL(context.headers.referer).origin;
       await Carts.create({ items: args.Items.map(({ _id }) => _id) });
       const line_items = args.Items.map((Item) => ({
